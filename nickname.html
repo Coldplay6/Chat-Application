@@ -1,0 +1,19 @@
+<html>
+    <head>
+ <script src="/socket.io/socket.io.js"></script>
+ <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+  $(function () {
+    var socket = io();
+    $('form').submit(function(){
+      socket.emit('nick name', $('#nickName').val());
+      return document.getElementById('nickForm').action;
+    });
+  });
+  </script>
+    </head>
+    <form action="/chat" id="nickForm">
+    <input name="nickName" id="nickName" type="text" placeholder="Enter nick name">
+    <input type = "submit" value = "Enter">
+    </form>
+</html>
