@@ -7,7 +7,7 @@
     var socket = io();
     $('form').submit(function(){
       socket.emit('nick name', $('#nickName').val());
-      return document.getElementById('nickForm').action;
+      return document.getElementById('nickForm').action;;
     });
   });
   </script>
