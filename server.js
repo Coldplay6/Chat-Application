@@ -8,6 +8,11 @@ res.sendFile(__dirname + "/index.html");
 
 io.on('connection',(socket) => {
 console.log("user connected");
+ io.emit('start connection', 'welcome to public chat');
+socket.on('chat message',(msg) => {
+ console.log(msg)
+ io.emit('chat message', msg);
+});
 socket.on('disconnect',() => {
  console.log("user disconnected");
 });
