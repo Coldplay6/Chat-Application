@@ -5,16 +5,21 @@
  <script src="/socket.io/socket.io.js"></script>
    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <script>
-$(function () {  
+$(function () { 
+    var nickName = prompt("Enter your name : ", "your name here"); 
       var socket = io();
+      
+    socket.emit('nick name', nickName);
+    socket.on('start connection', function(msg){
+      $('#messages').append($('<li>').text(msg));
+      console.log(msg);
+    });
     $('form').submit(function(){
       socket.emit('chat message', $('#m').val());
       $('#m').val('');
       return false;
     });
-    socket.on('start connection', function(msg){
-      $('#messages').append($('<li>').text(msg));
-    });
+    
     socket.on('chat history', function(chat){
       for (var msg in chat){
       $('#messages').append($('<li>').text(chat[msg]));
@@ -41,7 +46,7 @@ $(function () {
   </head>
   <body>
     
-    <span id = "chat">
+    <span id = "chat" autoscroll="on">
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
