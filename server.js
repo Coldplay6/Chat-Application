@@ -36,6 +36,8 @@ socket.on('chat message',(msg) => {
 console.log(chatHistory);
 });
 
+
+
 socket.on('disconnect',() => {
  io.emit('end connection', nickName +' ' + 'left the chat');
 });
